@@ -1,8 +1,29 @@
 const config = require('config.json');
 const jwt = require('jsonwebtoken');
+const  {connection} = require('../index.js');
+
+// console.log('connection : ',  connection)
+
+
+const get_user_query = 'SELECT * FROM users';
+
+var users;
+
+connection.query(get_user_query, (err, results, fields) => {
+    if (err){
+        console.log(err)
+    }
+    else {
+
+        users = results;
+        console.log(users);
+    }
+})
+
+
 
 // users hardcoded for simplicity, store in a db for production applications
-const users = [{ id: 1, username: 'test', password: 'test', firstName: 'Test', lastName: 'User' }];
+// const users = [{ id: 1, username: 'test', password: 'test', firstName: 'Test', lastName: 'User' }];
 
 module.exports = {
     authenticate,
@@ -10,12 +31,14 @@ module.exports = {
 };
 
 async function authenticate({ username, password }) {
+    
     const user = users.find(u => u.username === username && u.password === password);
 
     if (!user) throw 'Username or password is incorrect';
 
     // create a jwt token that is valid for 7 days
     const token = jwt.sign({ sub: user.id }, config.secret, { expiresIn: '7d' });
+    console.log('user connected !')
 
     return {
         ...omitPassword(user),
@@ -33,3 +56,4 @@ function omitPassword(user) {
     const { password, ...userWithoutPassword } = user;
     return userWithoutPassword;
 }
+
