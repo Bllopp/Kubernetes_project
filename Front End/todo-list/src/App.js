@@ -15,6 +15,7 @@ function App() {
   
   const handleLogin= () => {
     setLoggedIn(true)
+    console.log(loggedIn)
   }
 
   return (

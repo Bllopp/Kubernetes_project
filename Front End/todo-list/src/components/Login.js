@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import axios from 'axios';
 
+import './login.css'
+
 
 function Login({onLogin}) {
 
@@ -11,7 +13,7 @@ function Login({onLogin}) {
 
     const handleLogin = async () => {
         try {
-          const response = await axios.post('https://your-api-endpoint.com/api/login', {
+          const response = await axios.post(API_url, {
             username: username,
             password: password,
           });
@@ -33,7 +35,7 @@ function Login({onLogin}) {
 
 
     return(
-        <div>
+        <div className="login">
             <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
             <input type="text" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
 
