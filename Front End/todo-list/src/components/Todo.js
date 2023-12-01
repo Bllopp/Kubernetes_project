@@ -1,7 +1,7 @@
 import React from 'react';
 import {useState} from 'react';
 import './todo.css'
-import plus_button from '../icons8-plus-button-100.png' 
+import plus_button from '../icons8-plus-24.png' 
 
 function Todo () {
 

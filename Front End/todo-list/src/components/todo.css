@@ -1,7 +1,7 @@
 .input {
     text-align: center;
     display: flex;
-    /* gap: 20px; */
+    gap : 0px;
     flex-direction: row-reverse;
     justify-content: center;
     /* margin-top: 100px; */
@@ -11,39 +11,56 @@
 
   }
 
+  .input:focus-within .todo-button {
+    background-color: rgba(0, 0, 0, 0.6);
+  
+  }
+  
+  .input:focus-within .todo-button:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
   .todo-input{
     background-color: rgba(0, 0, 0, 0.7) ;
     width : 20em;
-    border-radius: 0.2em;
+    border-radius: 0em 0.5em 0.5em  0em;
     border: none;
     color : white;
     padding: 1em 1em;
   }
 
+  .todo-input:focus {
+    background-color: rgba(0, 0, 0, 0.6) ;
+    /* box-shadow: 0 0 5px rgba(179, 186, 194, 0.5); */
+    /* border-color: #ffffff; */
+    outline: none;
+    box-shadow: none
+  }
+
   .todo-button{
     display: flex;
     align-self: center;
-
-    width: 30px; /* Adjust the width of the button */
-    height: 30px; /* Maintain the aspect ratio */
-    margin-right: 10px;
+    background-color: rgba(0, 0, 0, 0.7) ;
+    width : 20em;
+    border-radius: 0.5em  0em 0em 0.5em  ;
+    border: none;
+    color : white;
+    padding: 1em 1em;
+    width: 24px; 
+    height: 24px; 
+    /* margin-right: 10px; */
     transition: width 0.2s, height 0.2s;
   }
 
   .todo-button:hover{
-    width: 35px; /* Adjust the width of the button */
-    height: 35px; /* Maintain the aspect ratio */
+    width: 28px; /* Adjust the width of the button */
+    height: 28px; /* Maintain the aspect ratio */
     transition: width height;
   }
 
 
 
-  .todo-input:focus{
-    background-color: rgba(0, 0, 0, 0.6) ;
-    box-shadow: 0 0 5px rgba(179, 186, 194, 0.5);
-    border-color: #ffffff;
-    outline: none;
-  }
+ 
 
   body,html {
     margin: 0;
@@ -79,6 +96,12 @@
     flex-direction: column;
     height: 100%;
     min-height: 100vh;
+    background-image: url('../background.jpg');
+    background-attachment:local;
+    background-size:cover;
+    background-position: center;
+
+
     /* flex: 1 0 auto; */
     /* justify-content: flex-start; */
     
