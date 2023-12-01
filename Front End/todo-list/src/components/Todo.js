@@ -1,6 +1,7 @@
 import React from 'react';
 import {useState} from 'react';
-
+import './todo.css'
+import plus_button from '../icons8-plus-button-100.png' 
 
 function Todo () {
 
@@ -12,22 +13,30 @@ function Todo () {
   }
 
   const newTask = () => {
+    if (input === '') return
     setTasks([...tasks,[input,false]])
     setInput('')
 
     console.log(tasks)
   }
 
+  const handleEnter = (e) => {
+    if (e.key === 'Enter') newTask()
+  }
+
     return (
       <div className="Todo">
-        <div className="input">
-          <input className="todo-input" value={input} onChange={handleWrite}></input>
-          <input type="button" value="Ajouter" onClick={newTask}></input>
-          </div>
           <div className='tasks_container'>
             {tasks.map((element, index) => (
-              <p key={index} className="task">{element[0]}</p>
+              <div key={index} className="task"> 
+              <p  >{element[0]}</p>
+              <p> {element[1] ? "Done" : "Left to do"} </p>
+              </div>
             ))}
+          </div>
+          <div className="input">
+            <input className="todo-input" value={input} onChange={handleWrite} onKeyDown={handleEnter}></input>
+            <input className="todo-button" type="image" src={plus_button} value="Ajouter" onClick={newTask} ></input>
           </div>
       </div>
     )

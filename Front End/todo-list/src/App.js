@@ -1,4 +1,3 @@
-
 import './App.css';
 import React, { useEffect } from 'react';
 import {useState} from 'react';
@@ -11,7 +10,7 @@ import Todo from './components/Todo';
 
 function App() {
 
-  const [loggedIn,setLoggedIn] = useState(false)
+  const [loggedIn,setLoggedIn] = useState(true)
   
   const handleLogin= () => {
     setLoggedIn(true)
@@ -27,7 +26,7 @@ function App() {
   }
 
   useEffect(() => {
-    checkToken()
+    // checkToken()
   },[])
 
   return (
