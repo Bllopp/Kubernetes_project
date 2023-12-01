@@ -15,6 +15,7 @@ function Todo () {
   const newTask = () => {
     if (input === '') return
     setTasks([...tasks,[input,false]])
+    // requet Done POST [idTask] 
     setInput('')
 
     console.log(tasks)

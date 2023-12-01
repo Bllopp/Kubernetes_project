@@ -4,24 +4,29 @@
     gap : 0px;
     flex-direction: row-reverse;
     justify-content: center;
-    /* margin-top: 100px; */
+   
 
     position : sticky;
-    padding-bottom : 40px; 
+    z-index: 4;
+    padding-bottom : 40px;
+   
 
   }
 
   .input:focus-within .todo-button {
     background-color: rgba(0, 0, 0, 0.6);
+    transition: background-color 0.2s;
   
   }
   
   .input:focus-within .todo-button:hover {
     background-color: rgba(0, 0, 0, 0.4);
+    
   }
 
   .todo-input{
     background-color: rgba(0, 0, 0, 0.7) ;
+    transition: background-color 0.2s;
     width : 20em;
     border-radius: 0em 0.5em 0.5em  0em;
     border: none;
@@ -31,6 +36,7 @@
 
   .todo-input:focus {
     background-color: rgba(0, 0, 0, 0.6) ;
+    transition: background-color 0.2s;
     /* box-shadow: 0 0 5px rgba(179, 186, 194, 0.5); */
     /* border-color: #ffffff; */
     outline: none;
@@ -41,6 +47,7 @@
     display: flex;
     align-self: center;
     background-color: rgba(0, 0, 0, 0.7) ;
+    transition: background-color 0.2s;
     width : 20em;
     border-radius: 0.5em  0em 0em 0.5em  ;
     border: none;
@@ -48,19 +55,17 @@
     padding: 1em 1em;
     width: 24px; 
     height: 24px; 
+ 
     /* margin-right: 10px; */
-    transition: width 0.2s, height 0.2s;
+    transition: width 0.2s, height 0.2s,;
   }
 
   .todo-button:hover{
     width: 28px; /* Adjust the width of the button */
     height: 28px; /* Maintain the aspect ratio */
-    transition: width height;
-  }
-
-
-
  
+    transition: width 0.2s, height 0.2s;
+  }
 
   body,html {
     margin: 0;
@@ -71,19 +76,18 @@
   .task{
     color: white ;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    /* border: 4px solid black; */
     background-color: rgba(44, 44, 44, 1) ;
-    padding : 0.3em 0.3em 0.3em 0.3em ;
+    padding : 0.1em 0.8em 0.1em 4em ;
     text-align : left;
     border-radius: 0.3em;
     animation: myAnim 1s;
     
-    
+    max-width: fit-content;
+    min-width: 20em;
   }
 
-  @keyframes fadeIn {
-    0% { }
-    100% {  }
+  .task:hover {
+    background-color: rgb(65, 65, 65)  ;
   }
 
   @keyframes myAnim {
@@ -102,16 +106,18 @@
   
   
   .tasks_container{
-    max-width: fit-content;
-    min-width: 20em;
+    
     margin: auto;
     justify-content: center;
     display: flex;
     flex-direction: column;
     text-align: center;
+    align-items: baseline;
     gap: 1em;
     flex-grow: 1;
     margin-bottom: auto;
+    position:-ms-page;
+    z-index: 1;
     
   }
   .Todo {
