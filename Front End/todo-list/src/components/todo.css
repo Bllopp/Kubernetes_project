@@ -1,0 +1,192 @@
+.input {
+    text-align: center;
+    display: flex;
+    gap : 0px;
+    flex-direction: row-reverse;
+    justify-content: center;
+   
+
+    position : sticky;
+    z-index: 4;
+    padding-bottom : 40px;
+    
+
+  }
+
+  .input:focus-within .todo-button {
+    background-color: rgba(0, 0, 0, 0.6);
+    transition: background-color 0.2s;
+  
+  }
+  
+  .input:focus-within .todo-button:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+    
+  }
+
+  .todo-input{
+    background-color: rgba(0, 0, 0, 0.7) ;
+    transition: background-color 0.2s;
+    width : 20em;
+    border-radius: 0em 0.5em 0.5em  0em;
+    border: none;
+    color : white;
+    padding: 1em 1em;
+    font-size: 1.2em;  }
+
+  .todo-input:focus {
+    background-color: rgba(0, 0, 0, 0.6) ;
+    transition: background-color 0.2s;
+    /* box-shadow: 0 0 5px rgba(179, 186, 194, 0.5); */
+    /* border-color: #ffffff; */
+    outline: none;
+    box-shadow: none
+  }
+
+  .todo-button {
+    display: flex;
+    align-self: center;
+    background-color: rgba(0, 0, 0, 0.7) ;
+    transition: background-color 0.2s;
+    width : 20em;
+    border-radius: 0.5em  0em 0em 0.5em  ;
+    border: none;
+    color : white;
+    padding: 1.2em 1em;
+    width: 30px; 
+    height: 30px; 
+ 
+    /* margin-right: 10px; */
+    transition: width 0.2s, height 0.2s,;
+  }
+
+  .todo-button:hover{
+    width: 32px; /* Adjust the width of the button */
+    height: 32px; /* Maintain the aspect ratio */
+ 
+    transition: width 0.2s, height 0.2s;
+  }
+
+  body,html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  
+  .task, .task-done{
+    color: white ;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: rgba(44, 44, 44, 1) ;
+    padding : 0.1em 0.8em 0.1em 0.6em ;
+    text-align : left;
+    border-radius: 0.3em;
+    display : grid;
+    grid-template-columns: 45px auto;
+    grid-template-rows: 50% 50%;
+    animation: myAnim 1s;
+    max-width: fit-content;
+    min-width: 20em;
+  }
+
+ 
+  .task p, .task-done p {
+    padding: 0em;
+    margin: 0.3em 0.5em 0.3em 0.5em;
+  }
+  .task_status{
+    color: rgba(255, 255, 255, 0.548)
+  }
+
+  .task_name, .task_status{
+    grid-column: 2 / 3;
+  }
+
+  .done_button{
+    height: 30px;
+    width: 30px;
+    
+    border: 2px solid #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    grid-row : 1 / 3; 
+
+    display: flex;
+    align-self: center;
+  }
+
+
+  .check-icon{
+    display: none;
+
+  }
+
+  .done_button:hover{
+    background-color: #bbb;
+    cursor: pointer;
+  }
+
+  .done_button:hover .check-icon{
+    display: block;
+  }
+
+  .task:hover {
+    background-color: rgb(65, 65, 65)  ;
+  }
+
+  .task-done .done_button{
+    background-color: rgb(16, 235, 71) ;
+    border : none;
+    height: 32px;
+    width: 32px;
+  }
+  .task-done .check-icon{
+    display: block;
+  }
+
+
+  @keyframes myAnim {
+    0% {
+      animation-timing-function: ease-in;
+      opacity: 0;
+      transform: translateY(45px);
+    }
+  
+    100% {
+      animation-timing-function: ease-out;
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+  
+  
+  .tasks_container{
+    
+    margin: auto;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: baseline;
+    gap: 1em;
+    flex-grow: 1;
+    margin-bottom: auto;
+    position:-ms-page;
+    z-index: 1;
+    
+  }
+  .Todo {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 100vh;
+    background-image: url('../background.jpg');
+    background-attachment:local;
+    background-size:cover;
+    background-position: center;
+
+
+    /* flex: 1 0 auto; */
+    /* justify-content: flex-start; */
+    
+   
+  }

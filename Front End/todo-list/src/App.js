@@ -1,8 +1,7 @@
-
 import './App.css';
 import React, { useEffect } from 'react';
 import {useState} from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate  } from 'react-router-dom';
 import AuthService from './services/AuthService';
 
 import Login from './components/Login'
@@ -11,28 +10,31 @@ import Todo from './components/Todo';
 
 function App() {
 
-  const [loggedIn,setLoggedIn] = useState(!!AuthService.getToken)
+  const [loggedIn,setLoggedIn] = useState(true)
   
   const handleLogin= () => {
     setLoggedIn(true)
     console.log(loggedIn)
   }
 
-  const handleLogout = () =>{
-    setLoggedIn(false)
-    console.log('log out ' , loggedIn)
+  const checkToken= () => {
+    const token = localStorage.getItem('token');
+    if (token) setLoggedIn(true)
+    else {
+      setLoggedIn(false);  
+    }
   }
 
   useEffect(() => {
-    console.log('USER CONNECTE  : ', loggedIn)
+    // checkToken()
   },[])
 
   return (
     <div className="App">
      <Router>
         <Routes>
-          <Route path='/login' element={<Login onLogin={handleLogin} />} />
-          <Route path='/' element={loggedIn? <Todo onLogout={handleLogout}/> : <Login onLogin={handleLogin} />} />
+          <Route exact path='/login' element={<Login onLogin={handleLogin} />} />
+          <Route exact path='/' element={ loggedIn ? (<Todo />) : ( <Login onLogin={handleLogin} />) } />
         </Routes>
       </Router>
       
