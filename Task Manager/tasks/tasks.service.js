@@ -22,7 +22,7 @@ async function deleteTask({tasksId}) {
     })
 }
 
-async function changeTaskName({tasksId, newName}) {
+async function changeTaskName(tasksId,newName) {
     connection.query('UPDATE tasks SET name = ' + newName + ' WHERE tasksId = ' + tasksId, (err, res) => {
         if (err) throw err;
         return res;

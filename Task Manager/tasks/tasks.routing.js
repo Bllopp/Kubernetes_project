@@ -7,7 +7,7 @@ module.exports = router;
 
 router.get('/:userId/tasks', getTasksByUser);
 router.put('/:tasksId/status/:newStatus', changeTaskStatus);
-router.put('/:tasksId/rename/:newName', changeTaskName);
+router.put('/:tasksId/rename', changeTaskName);
 router.delete('/:tasksId/delete', deleteTask);
 
 router.use((req,res) => {
@@ -30,8 +30,10 @@ function deleteTask(req, res, next) {
 }
 
 function changeTaskName(req, res, next) {
-    TaskService.changeTaskName(req.params)
-    .then(console.log(res))
+    let newName= req.query.name
+    let tasksId = req.params['tasksId'];
+    TaskService.changeTaskName( tasksId, newName)
+    .then(() => res.status(200).send('Tasks ' + tasksId +' renamed !'))
     .catch(next);
 }
 
