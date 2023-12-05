@@ -1,11 +1,13 @@
-const router = express.Router();
 const express = require('express');
+const router = express.Router();
 const TaskService = require('./tasks.service');
+
+module.exports = router;
 
 
 router.get('/:userId/tasks', getTasksByUser);
-router.put('/:taskId/done', changeTaskStatus);
-router.put('/:taskId/done', changeTaskName);
+router.put('/:taskId/status/:newStatus', changeTaskStatus);
+router.put('/:taskId/rename', changeTaskName);
 router.delete('/:taskId/delete', deleteTask);
 
 

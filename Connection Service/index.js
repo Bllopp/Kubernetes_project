@@ -25,6 +25,10 @@ connection.connect((err) => {
     }
 });
 
+con.on('error', function(err) {
+    console.log("[mysql error]",err);
+  });
+
 
 
 app.use(express.urlencoded({ extended: false }));
