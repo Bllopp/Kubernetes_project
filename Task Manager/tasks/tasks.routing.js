@@ -6,6 +6,7 @@ module.exports = router;
 
 
 router.get('/:userId/tasks', getTasksByUser);
+router.post('/newTask', postNewTask)
 router.put('/:tasksId/status/:newStatus', changeTaskStatus);
 router.put('/:tasksId/rename', changeTaskName);
 router.delete('/:tasksId/delete', deleteTask);
@@ -21,6 +22,12 @@ function getTasksByUser(req, res, next) {
     TaskService.getTasksByUser(req.params)
     .then(tasks => {res.json(tasks)})
     .catch(next);
+}
+
+function postNewTask(req, res, next) {
+    TaskService.postNewTask(req.query.name,req.query.userId)
+    .then(task => res.status(200).send(task))
+    .catch(next)
 }
 
 function deleteTask(req, res, next) {

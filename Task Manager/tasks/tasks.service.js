@@ -4,7 +4,8 @@ module.exports = {
     getTasksByUser,
     deleteTask,
     changeTaskName,
-    changeTaskStatus
+    changeTaskStatus,
+    postNewTask
 }
 
 async function getTasksByUser({userId}) {
@@ -13,6 +14,14 @@ async function getTasksByUser({userId}) {
         console.log(res)
         return res;
     })
+}
+
+async function postNewTask(name, userId){
+    connection.query('INSERT INTO tasks (name, status, userId) VALUES (?,?,?)',[name,0,userId], (err,res) => {
+        if (err) throw (err)
+        return res;
+    })
+
 }
 
 async function deleteTask({tasksId}) {
