@@ -1,6 +1,6 @@
 
 import './App.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {useState} from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import AuthService from './services/AuthService';
@@ -18,12 +18,21 @@ function App() {
     console.log(loggedIn)
   }
 
+  const handleLogout = () =>{
+    setLoggedIn(false)
+    console.log('log out ' , loggedIn)
+  }
+
+  useEffect(() => {
+    console.log('USER CONNECTE  : ', loggedIn)
+  },[])
+
   return (
     <div className="App">
      <Router>
         <Routes>
           <Route path='/login' element={<Login onLogin={handleLogin} />} />
-          <Route path='/' element={<PrivateRoute element={<Todo />} />} />
+          <Route path='/' element={loggedIn? <Todo onLogout={handleLogout}/> : <Login onLogin={handleLogin} />} />
         </Routes>
       </Router>
       

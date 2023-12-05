@@ -2,10 +2,12 @@ import React from 'react';
 import {useState} from 'react';
 
 
-function Todo () {
+function Todo ({onLogout}) {
 
   var [tasks,setTasks] = useState([]);
   var [input,setInput] = useState('');
+
+  
 
   const handleWrite = e => {
     setInput(e.target.value)
@@ -28,6 +30,9 @@ function Todo () {
             {tasks.map((element, index) => (
               <p key={index} className="task">{element[0]}</p>
             ))}
+          </div>
+          <div >
+            <button onclick={onLogout()}>Loug out</button>
           </div>
       </div>
     )
