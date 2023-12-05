@@ -16,7 +16,7 @@ async function getTasksByUser({userId}) {
 }
 
 async function deleteTask({tasksId}) {
-    connection.query('DELETE * FROM tasks WHERE tasksId = ' + tasksId, (err, res) => {
+    connection.query('DELETE FROM tasks WHERE tasksId = ' + tasksId, (err, res) => {
         if (err) throw err;
         return res;
     })
@@ -29,8 +29,9 @@ async function changeTaskName({tasksId, newName}) {
     })
 }
 
-async function changeTaskStatus({tasksId, newStatus}) {
-    connection.query('UPDATE tasks SET status = ' + newStatus + ' WHERE tasksId = ' + tasksId, (err, res) => {
+async function changeTaskStatus(params) {
+    console.log('params : ', params)
+    connection.query('UPDATE tasks SET status = ' + params['newStatus'] + ' WHERE tasksId = ' + params['tasksId'], (err, res) => {
         if (err) throw err;
         return res;
     })

@@ -6,9 +6,13 @@ module.exports = router;
 
 
 router.get('/:userId/tasks', getTasksByUser);
-router.put('/:taskId/status/:newStatus', changeTaskStatus);
-router.put('/:taskId/rename', changeTaskName);
-router.delete('/:taskId/delete', deleteTask);
+router.put('/:tasksId/status/:newStatus', changeTaskStatus);
+router.put('/:tasksId/rename/:newName', changeTaskName);
+router.delete('/:tasksId/delete', deleteTask);
+
+router.use((req,res) => {
+    res.status(404).send('Not Found')
+})
 
 
 
@@ -21,7 +25,7 @@ function getTasksByUser(req, res, next) {
 
 function deleteTask(req, res, next) {
     TaskService.deleteTask(req.params)
-    .then(console.log(res))
+    .then(res => console.log('Line deleted'))
     .catch(next);
 }
 
@@ -32,7 +36,11 @@ function changeTaskName(req, res, next) {
 }
 
 function changeTaskStatus(req, res, next) {
+    console.log(req.params)
     TaskService.changeTaskStatus(req.params)
-    .then(console.log(res))
+    .then(result => {
+        console.log(result);
+        res.send(result); 
+    })
     .catch(next);
 }
