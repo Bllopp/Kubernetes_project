@@ -16,8 +16,6 @@ router.use((req,res) => {
 })
 
 
-
-
 function getTasksByUser(req, res, next) {
     TaskService.getTasksByUser(req.params)
     .then(tasks => {res.json(tasks)})
@@ -25,8 +23,8 @@ function getTasksByUser(req, res, next) {
 }
 
 function postNewTask(req, res, next) {
-    TaskService.postNewTask(req.query.name,req.query.userId)
-    .then(task => res.status(200).send(task))
+    TaskService.postNewTask(req.query)
+    .then(task => res.status(200).send('Task created successfully'))
     .catch(next)
 }
 

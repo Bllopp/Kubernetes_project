@@ -16,7 +16,7 @@ async function getTasksByUser({userId}) {
     })
 }
 
-async function postNewTask(name, userId){
+async function postNewTask({name, userId}){
     connection.query('INSERT INTO tasks (name, status, userId) VALUES (?,?,?)',[name,0,userId], (err,res) => {
         if (err) throw (err)
         return res;
