@@ -9,11 +9,21 @@ module.exports = {
 }
 
 async function getTasksByUser({userId}) {
+    return new Promise((resolve, reject) => {
+
+  
     connection.query('SELECT * FROM tasks WHERE userID = ' + userId, (err, res) => {
-        if (err) console.error('getTasks error : ', err);
-        console.log(res)
-        return res;
+        if(err){
+            // The equivalent of throwing the error
+            reject(err);
+        } else {
+            // The equivalent of returning a value for getAll
+            resolve(res);
+        }
     })
+
+})
+
 }
 
 async function postNewTask({name, userId}){
