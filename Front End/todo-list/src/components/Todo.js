@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import {useState} from 'react';
 import './todo.css'
+import {jwtDecode } from 'jwt-decode';
 import plus_button from '../icons8-plus-24.png' 
+import TaskService from '../services/TaskService'
 
 function Todo () {
 
@@ -36,6 +38,24 @@ function Todo () {
   const handleEnter = (e) => {
     if (e.key === 'Enter') newTask()
   }
+
+  useEffect(() => {
+    const API_url = process.env.API_url || 'http://localhost:4040/tasks';
+    let token = localStorage.getItem('token')
+    if (token) {
+      let userId = jwtDecode(token,{header: true});
+      fetch(API_url + '/' + userId, {
+        method : 'GET',
+        headers : {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    })
+    .then((res) => res.json())
+    .then(tasks => setTasks(tasks))
+
+    }
+  },[])
 
     return (
       <div className="Todo">
