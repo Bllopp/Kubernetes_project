@@ -25,7 +25,7 @@ connection.connect((err) => {
     }
 });
 
-con.on('error', function(err) {
+connection.on('error', function(err) {
     console.log("[mysql error]",err);
   });
 

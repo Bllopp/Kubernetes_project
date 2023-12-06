@@ -17,6 +17,11 @@ function App() {
     console.log(loggedIn)
   }
 
+  const handleLogout = () => {
+    setLoggedIn(false)
+   
+  }
+
   const checkToken= () => {
     const token = localStorage.getItem('token');
     if (token) setLoggedIn(true)
@@ -26,7 +31,7 @@ function App() {
   }
 
   useEffect(() => {
-    // checkToken()
+    checkToken()
   },[])
 
   return (
@@ -34,7 +39,7 @@ function App() {
      <Router>
         <Routes>
           <Route exact path='/login' element={<Login onLogin={handleLogin} />} />
-          <Route exact path='/' element={ loggedIn ? (<Todo />) : ( <Login onLogin={handleLogin} />) } />
+          <Route exact path='/' element={ loggedIn ? (<Todo onLogout={handleLogout}/>) : ( <Login onLogin={handleLogin} />) } />
         </Routes>
       </Router>
       

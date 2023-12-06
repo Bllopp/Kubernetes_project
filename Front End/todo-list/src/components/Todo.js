@@ -3,7 +3,7 @@ import {useState} from 'react';
 import './todo.css'
 import plus_button from '../icons8-plus-24.png' 
 
-function Todo () {
+function Todo ({onLogout}) {
 
   var [tasks,setTasks] = useState([]);
   var [input,setInput] = useState('');
@@ -32,6 +32,16 @@ function Todo () {
   });
 
   }
+  const logoutSession = () =>{
+    var token = localStorage.getItem('token')
+
+    if (!token) return;
+
+    
+    localStorage.removeItem('token')
+
+    onLogout();
+  }
 
   const handleEnter = (e) => {
     if (e.key === 'Enter') newTask()
@@ -39,6 +49,9 @@ function Todo () {
 
     return (
       <div className="Todo">
+        <div className='logout'> 
+          <input type='button' value ='logout' onClick={logoutSession}></input>
+        </div>
           <div className='tasks_container'>
             {tasks.map((element, index) => (
               <div key={index} className={element[1] ? "task-done" : "task"}> 
