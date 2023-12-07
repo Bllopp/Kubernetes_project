@@ -20,7 +20,7 @@ function getTasksByUser(req, res, next) {
     TaskService.getTasksByUser(req.params)
     .then(tasks => {
         if (tasks) {
-            console.log('Tasks:', tasks);
+        
             res.send(tasks);
         } else {
             console.log('No tasks found.');
@@ -31,6 +31,7 @@ function getTasksByUser(req, res, next) {
 }
 
 function postNewTask(req, res, next) {
+    // console.log(req.query)
     TaskService.postNewTask(req.query)
     .then( () => res.status(200).send('Task created successfully'))
     .catch(next)

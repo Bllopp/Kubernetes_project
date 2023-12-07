@@ -11,6 +11,8 @@ function Todo (props) {
   var userId = props.userId
   var [tasks,setTasks] = useState([]);
   var [input,setInput] = useState('');
+
+  const API_url = process.env.API_url || 'http://localhost:4040/tasks';
   
 
   const handleWrite = e => {
@@ -18,9 +20,16 @@ function Todo (props) {
   }
 
   const newTask = () => {
+    let userIdToken = localStorage.getItem('userId');
+    console.log(userIdToken)
     if (input === '') return
-    setTasks([...tasks,{name: input,status:  0, userId: userId}])
+    setTasks([...tasks,{name: input,status:  0, userId: userIdToken}])
     // requet Done POST [idTask] 
+
+    fetch(API_url + '/newTask?name='+input + '&userId='+userIdToken , {
+      method : "POST",
+    })
+    .then(res => console.log(res.headers))
     setInput('')
 
     console.log(tasks)
@@ -53,7 +62,7 @@ function Todo (props) {
   }
 
   useEffect(() => {
-    const API_url = process.env.API_url || 'http://localhost:4040/tasks';
+    
     let token = localStorage.getItem('token')
    
     if (token) {

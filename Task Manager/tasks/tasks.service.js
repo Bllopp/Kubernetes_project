@@ -51,7 +51,6 @@ async function changeTaskName(tasksId,newName) {
 }
 
 async function changeTaskStatus(params) {
-    console.log('params : ', params)
     connection.query('UPDATE tasks SET status = ' + params['newStatus'] + ' WHERE tasksId = ' + params['tasksId'], (err, res) => {
         if (err) throw err;
         return res;
