@@ -58,14 +58,17 @@ function Todo (props) {
    
     if (token) {
     
+      let userIdToken = localStorage.getItem('userId');
     //   fetch(API_url + '/' + 1
     // )
     // .then( res => res.json() )
     // .then(tasks => setTasks( tasks))
     // .then(tasks => console.log(tasks))
 
+    console.log(userIdToken)
+
     const fetchTasks = async () => {
-      const response = await fetch(API_url+'/'+userId);
+      const response = await fetch(API_url + '/' + userIdToken);
       const data = await response.json();
       console.log(data)
       setTasks(data)

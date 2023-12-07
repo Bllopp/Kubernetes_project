@@ -24,11 +24,12 @@ function Login({onLogin}) {
           // Save the token to local storage or state
           // Example: localStorage.setItem('token', token);
           localStorage.setItem('token', token)
+          localStorage.setItem('userId', response.data.iduser )
     
           // Trigger the onLogin callback or any other action after successful login
           onLogin(response.data.iduser);
 
-          
+
         } catch (error) {
           // Handle login failure
           console.error('Login failed:', error);
