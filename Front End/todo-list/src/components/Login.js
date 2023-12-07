@@ -26,7 +26,9 @@ function Login({onLogin}) {
           localStorage.setItem('token', token)
     
           // Trigger the onLogin callback or any other action after successful login
-          onLogin();
+          onLogin(response.data.iduser);
+
+          
         } catch (error) {
           // Handle login failure
           console.error('Login failed:', error);

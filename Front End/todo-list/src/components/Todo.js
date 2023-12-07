@@ -5,10 +5,13 @@ import {jwtDecode } from 'jwt-decode';
 import plus_button from '../icons8-plus-24.png' 
 import TaskService from '../services/TaskService'
 
-function Todo ({onLogout}) {
+function Todo (props) {
 
+  var onLogout = props.onLogout;
+  var userId = props.userId
   var [tasks,setTasks] = useState([]);
   var [input,setInput] = useState('');
+  
 
   const handleWrite = e => {
     setInput(e.target.value)
@@ -16,7 +19,7 @@ function Todo ({onLogout}) {
 
   const newTask = () => {
     if (input === '') return
-    setTasks([...tasks,[input,false]])
+    setTasks([...tasks,{name: input,status:  0, userId: userId}])
     // requet Done POST [idTask] 
     setInput('')
 
@@ -52,17 +55,23 @@ function Todo ({onLogout}) {
   useEffect(() => {
     const API_url = process.env.API_url || 'http://localhost:4040/tasks';
     let token = localStorage.getItem('token')
+   
     if (token) {
-      let userId = jwtDecode(token,{header: true});
-      fetch(API_url + '/' + userId, {
-        method : 'GET',
-        headers : {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        }
-    })
-    .then((res) => res.json())
-    .then(tasks => setTasks(tasks))
+    
+    //   fetch(API_url + '/' + 1
+    // )
+    // .then( res => res.json() )
+    // .then(tasks => setTasks( tasks))
+    // .then(tasks => console.log(tasks))
+
+    const fetchTasks = async () => {
+      const response = await fetch(API_url+'/'+userId);
+      const data = await response.json();
+      console.log(data)
+      setTasks(data)
+    }
+
+    fetchTasks()
 
     }
   },[])
@@ -74,14 +83,14 @@ function Todo ({onLogout}) {
         </div>
           <div className='tasks_container'>
             {tasks.map((element, index) => (
-              <div key={index} className={element[1] ? "task-done" : "task"}> 
+              <div key={index} className={element.status ? "task-done" : "task"}> 
              
               <span className='done_button'>
               <img value={index} className='check-icon' onClick={e => handleDone(e,index)} src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAAAXNSR0IArs4c6QAAAmdJREFUeF7t29FRwzAQRdFNJ1AJ0AmdAJVQCpRCKYwGe0ggsS1b0tuVbn74cWYn92SNJ3FOxkNa4CSdznADQPwmAAAAcQHxeDYAAHEB8Xg2AABxAfF4NgAAcQHxeDYAAHEB8Xg2AABxAfF4NgAAcQHxeDYAAHEB8Xg2AABxAfF4NgAAcQHxeDYAAHEB8Xg2AABxAfF4NgAAcQHxeDZgHeDRzB7M7G390PwjAFhuluJ/TIe81kAA4DbAefz5qOIIAFwHuBa/CgIA/wGW4hdHAOASYEv8oggA/ALkxE/PejKzz/zrnstnAPDTQxI/DQZAGB8AcfzRAWSnnfP/AqOeglzEH3UD3MQfEcBV/NEA3MUfCcBl/FEA3MYfAcB1/N4B3MfvGSBE/NYA79NXel9HP0FceX6Y+C0BUvznKdy9mdVCCBW/FcB5/PnNWwMhXPwWANfi10AIGb82wFL8kghh49cEeDGzdAvHlseR01Ho+DUBUpi0AXdbBMxsD0L4+DUB5u9ZayF0Eb82QC2EbuK3ACiN0FX8VgClELqL3xLgKEKX8VsD7EVIV1LzLeJbLqqK3LG2ZVCJYxR3ReReoua8zlDxFRswx6yBEC6+EmDP6WhpE0LGVwOUQggb3wPAUYTQ8b0A7EUIH98TQC5CF/G9AWxF6Ca+R4A1hK7iewW4hdBdfM8AfxG6jO8dYEZIfw//GjHn84yWxyo+C2r5+tzPAkBMBAAA4gLi8WwAAOIC4vFsAADiAuLxbAAA4gLi8WwAAOIC4vFsAADiAuLxbAAA4gLi8WwAAOIC4vFsAADiAuLxbAAA4gLi8d8fw3Fhe9ciIAAAAABJRU5ErkJggg=="/>
       
               </span>
-              <p className='task_name' >{element[0]}</p>
-              <p className='task_status'> {element[1] ? "Done" : "left to do"} </p>
+              <p className='task_name' >{element.name}</p>
+              <p className='task_status'> {element.status ? "Done" : "left to do"} </p>
               </div>
             ))}
           </div>

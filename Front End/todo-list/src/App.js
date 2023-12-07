@@ -11,9 +11,13 @@ import Todo from './components/Todo';
 function App() {
 
   const [loggedIn,setLoggedIn] = useState(true)
+
+  const [iduser,setIduser] = useState()
   
-  const handleLogin= () => {
+  const handleLogin= (iduser) => {
     setLoggedIn(true)
+    setIduser(iduser)
+    console.log(iduser)
     console.log(loggedIn)
   }
 
@@ -39,7 +43,7 @@ function App() {
      <Router>
         <Routes>
           <Route exact path='/login' element={<Login onLogin={handleLogin} />} />
-          <Route exact path='/' element={ loggedIn ? (<Todo onLogout={handleLogout}/>) : ( <Login onLogin={handleLogin} />) } />
+          <Route exact path='/' element={ loggedIn ? (<Todo onLogout={handleLogout} userId={iduser}/>) : ( <Login onLogin={handleLogin} />) } />
         </Routes>
       </Router>
       
