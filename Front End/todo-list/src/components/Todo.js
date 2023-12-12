@@ -3,6 +3,7 @@ import {useState} from 'react';
 import './todo.css'
 import {jwtDecode } from 'jwt-decode';
 import plus_button from '../icons8-plus-24.png' 
+import edit_icon from '../edit.png';
 import TaskService from '../services/TaskService'
 
 function Todo (props) {
@@ -103,7 +104,10 @@ function Todo (props) {
               <img value={index} className='check-icon' onClick={e => handleDone(e,index)} src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAAAXNSR0IArs4c6QAAAmdJREFUeF7t29FRwzAQRdFNJ1AJ0AmdAJVQCpRCKYwGe0ggsS1b0tuVbn74cWYn92SNJ3FOxkNa4CSdznADQPwmAAAAcQHxeDYAAHEB8Xg2AABxAfF4NgAAcQHxeDYAAHEB8Xg2AABxAfF4NgAAcQHxeDYAAHEB8Xg2AABxAfF4NgAAcQHxeDYAAHEB8Xg2AABxAfF4NgAAcQHxeDZgHeDRzB7M7G390PwjAFhuluJ/TIe81kAA4DbAefz5qOIIAFwHuBa/CgIA/wGW4hdHAOASYEv8oggA/ALkxE/PejKzz/zrnstnAPDTQxI/DQZAGB8AcfzRAWSnnfP/AqOeglzEH3UD3MQfEcBV/NEA3MUfCcBl/FEA3MYfAcB1/N4B3MfvGSBE/NYA79NXel9HP0FceX6Y+C0BUvznKdy9mdVCCBW/FcB5/PnNWwMhXPwWANfi10AIGb82wFL8kghh49cEeDGzdAvHlseR01Ho+DUBUpi0AXdbBMxsD0L4+DUB5u9ZayF0Eb82QC2EbuK3ACiN0FX8VgClELqL3xLgKEKX8VsD7EVIV1LzLeJbLqqK3LG2ZVCJYxR3ReReoua8zlDxFRswx6yBEC6+EmDP6WhpE0LGVwOUQggb3wPAUYTQ8b0A7EUIH98TQC5CF/G9AWxF6Ca+R4A1hK7iewW4hdBdfM8AfxG6jO8dYEZIfw//GjHn84yWxyo+C2r5+tzPAkBMBAAA4gLi8WwAAOIC4vFsAADiAuLxbAAA4gLi8WwAAOIC4vFsAADiAuLxbAAA4gLi8WwAAOIC4vFsAADiAuLxbAAA4gLi8d8fw3Fhe9ciIAAAAABJRU5ErkJggg=="/>
       
               </span>
+              <div className='edit_task'>
               <p className='task_name' >{element.name}</p>
+              <img src={edit_icon} className='edit_button' ></img>
+              </div>
               <p className='task_status'> {element.status ? "Done" : "left to do"} </p>
               </div>
             ))}

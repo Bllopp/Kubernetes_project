@@ -88,7 +88,7 @@
     grid-template-rows: 50% 50%;
     animation: myAnim 1s;
     max-width: fit-content;
-    min-width: 20em;
+    min-width: 23em;
   }
 
   .task::after{
@@ -198,7 +198,25 @@
     
    
   }
+.edit_button{
+  height: 1.2em;
+  filter: invert(100%);
+  display: none;
 
+}
+.task:hover .edit_button:hover{
+  scale: 1.1;
+  opacity: 100%;
+  cursor: pointer;
+}
+.task:hover .edit_button{
+  opacity: 20%;
+  display: block;
+}
+.edit_task{
+  display: flex;
+  align-items: center;
+}
   .logout {
     display: flex;
     position: sticky;
