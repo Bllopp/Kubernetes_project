@@ -41,9 +41,11 @@ function Todo (props) {
 
     setTasks(prevTasks => {
     const newTasks = [...prevTasks];
-    newTasks[index][1] = true;
+    newTasks[index].status = true;
     return newTasks;
   });
+
+  console.log(tasks)
 
   }
   const logoutSession = () =>{
