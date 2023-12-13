@@ -9,7 +9,8 @@ function Login({onLogin}) {
     const [username,setUsername] = useState('');
     const [password,setPassword] = useState('');
 
-    const API_url='http://localhost:4000/users/authenticate'
+    const API_url= process.env.CONNECTION_SERVER_IP || 'http://localhost:4000'
+    API_url += '/users/authenticate';
 
     const handleLogin = async () => {
         try {
@@ -24,12 +25,12 @@ function Login({onLogin}) {
           // Save the token to local storage or state
           // Example: localStorage.setItem('token', token);
           localStorage.setItem('token', token)
-          localStorage.setItem('userId', response.data.userId)
+          localStorage.setItem('userId', response.data.idusers)
     
           // Trigger the onLogin callback or any other action after successful login
-          onLogin(response.data.iduser);
+          onLogin(response.data.idusers);
 
-          console.log("user connected is",response.data.userId);
+          console.log("user connected is",response.data.idusers);
 
 
         } catch (error) {
