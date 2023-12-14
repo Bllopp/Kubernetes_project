@@ -9,8 +9,9 @@ function Login({onLogin}) {
     const [username,setUsername] = useState('');
     const [password,setPassword] = useState('');
 
-    const API_url= process.env.CONNECTION_SERVER_IP || 'http://localhost:4000'
-    API_url += '/users/authenticate';
+    let connection_api_url= process.env.CONNECTION_SERVER_IP || 'http://localhost:4000'
+    connection_api_url += '/users/authenticate';
+    const API_url = connection_api_url;
 
     const handleLogin = async () => {
         try {

@@ -35,7 +35,7 @@ metadata:
   name: your-app-service
 spec:
   selector:
-    app: your-app
+    app: authentification-server
   ports:
   - protocol: TCP
     port: 4000

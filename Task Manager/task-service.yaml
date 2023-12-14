@@ -28,14 +28,18 @@ spec:
           value: "password"
         - name: MYSQL_DATABASE
           value: "db_project"
+        - name : 'NODE_ENV'
+          value: "4040"
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: task-service
+  labels:
+    app: task-manager-server
 spec:
   selector:
-    app: task-service
+    app: task-manager-server
   ports:
   - protocol: TCP
     port: 4040
