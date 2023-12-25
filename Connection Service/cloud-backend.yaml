@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: p
+  name: authentification-server
 spec:
   replicas: 1
   selector:
@@ -32,7 +32,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: your-app-service
+  name: connection-service
 spec:
   selector:
     app: authentification-server

@@ -12,7 +12,7 @@ function Todo (props) {
   var [tasks,setTasks] = useState([]);
   var [input,setInput] = useState('');
 
-  let task_api_url = process.env.API_url || 'http://localhost:4040'
+  let task_api_url = process.env.API_url || 'http://127.0.0.1:54018'
   task_api_url += '/tasks';
   const API_url = task_api_url;
   const src_delete = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAKRJREFUSEvtlcERgCAMBNdOtBMtxUosxVK0FDvRYUZ4xImHIj/5SSR7SQauofJqKudHAXpgBlpHyAaMwOoJVYAFCJC7FSDdW8B+HvSEqLhskUqg4hdAPFA6+1SxLb06ICqXpZsS3f9fD+9rgFWovhM/twKVsLhFP+Byr5625J+BfJqKW6QIjwE5RmOhwdUGu+nd5OBiU4abxXyudSrLVK2R8eqAA04lOBnZrFOdAAAAAElFTkSuQmCC';
@@ -23,6 +23,7 @@ function Todo (props) {
 
   const newTask = () => {
     let userIdToken = localStorage.getItem('userId');
+    // userIdToken = 1;
     console.log(userIdToken)
     if (input === '') return
     setTasks([...tasks,{name: input,status:  0, userId: userIdToken}])
@@ -99,7 +100,7 @@ function Todo (props) {
         </div>
           <div className='tasks_container'>
             {tasks.map((element, index) => (
-              <div key={index} className={element.status ? "task-done" : "task"}> 
+              <div key={index} className={element.status ? "task" : "task-done"}> 
              
               <span className='done_button'>
               <img value={index} className='check-icon' onClick={e => handleDone(e,index)} src={check_icon} alt=''/>
@@ -109,7 +110,7 @@ function Todo (props) {
               <p className='task_name' >{element.name}</p>
               <img src={edit_icon} className='edit_button' alt=''></img>
               </div>
-              <p className='task_status'> {element.status ? "Done" : "left to do"} </p>
+              <p className='task_status'> {element.status ? "left to do" : "Done" } </p>
                 <div className='delete_div' >
                   <img src={src_delete}/>
                 </div>
