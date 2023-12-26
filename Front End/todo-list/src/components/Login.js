@@ -9,7 +9,7 @@ function Login({onLogin}) {
     const [username,setUsername] = useState('');
     const [password,setPassword] = useState('');
 
-    let connection_api_url= process.env.CONNECTION_SERVER_IP || 'http://127.0.0.1:58657'
+    let connection_api_url= process.env.CONNECTION_SERVER_IP || 'https://myservice.info/users'
     connection_api_url += '/users/authenticate';
     const API_url = connection_api_url;
 
