@@ -1,0 +1,46 @@
+.login{
+    display : flex;
+    flex-direction: column ;
+    max-width: fit-content;
+    gap: 1em;
+    margin: auto;
+    margin-top: 15%;
+
+    background-color: rgb(242, 242, 242), 100;
+    border: none;
+    border-radius: 1em;
+    padding : 1.5em 1.5em 1.5em 1.5em
+}
+
+button {
+    display: inline-block;
+    border: none;
+    border-radius: 0.3em;
+    padding: 1rem 2rem;
+    margin: 0;
+    text-decoration: none;
+    background: #2587ff;
+    color: #ffffff;
+    font-family: sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    transition: background 250ms ease-in-out, 
+                transform 150ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+button:hover,
+button:focus {
+    background: #0053ba;
+}
+
+button:focus {
+    outline: 1px solid #fff;
+    outline-offset: -4px;
+}
+
+button:active {
+    transform: scale(0.99);
+}

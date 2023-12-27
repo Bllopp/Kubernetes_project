@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: task-manager-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: task-manager-server
+  template:
+    metadata:
+      labels:
+        app: task-manager-server
+    spec:
+      containers:
+      - name: task-manager-server
+        image: bllopp/task-service:latest
+        ports:
+        - containerPort: 4040
+        env:
+        - name: MYSQL_HOST
+          value: mysql
+        - name: MYSQL_PORT
+          value: "3306"
+        - name: MYSQL_USER
+          value: "root"
+        - name: MYSQL_PASSWORD
+          value: "password"
+        - name: MYSQL_DATABASE
+          value: "db_project"
+        - name : 'NODE_ENV'
+          value: "4040"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: task-service
+  labels:
+    app: task-manager-server
+spec:
+  selector:
+    app: task-manager-server
+  ports:
+  - protocol: TCP
+    port: 4040
+    targetPort: 4040
+  type: NodePort

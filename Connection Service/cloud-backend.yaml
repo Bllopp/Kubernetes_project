@@ -32,10 +32,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: your-app-service
+  name: connection-service
 spec:
   selector:
-    app: your-app
+    app: authentification-server
   ports:
   - protocol: TCP
     port: 4000

@@ -25,6 +25,10 @@ connection.connect((err) => {
     }
 });
 
+connection.on('error', function(err) {
+    console.log("[mysql error]",err);
+  });
+
 
 
 app.use(express.urlencoded({ extended: false }));
@@ -41,7 +45,8 @@ app.use('/users', require('./users/users.controller'));
 app.use(errorHandler);
 
 // start server
-const port = process.env.NODE_ENV === 'production' ? 80 : 4000;
+// const port = process.env.NODE_ENV === 'production' ? 80 : 4000;
+const port = 4000;
 const server = app.listen(port, function () {
     console.log('Server listening on port ' + port);
 });
