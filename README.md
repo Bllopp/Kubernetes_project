@@ -9,10 +9,10 @@ On top of that, a front-end application can access the different services.
 The project consist on a Todo list application which save the user inputs inside a database and ask for connection to retrieve them.
 
 **Here is a scheme of the project architecture**
-![project architecture scheme image]()
+![project architecture scheme image](./Kubernetes-project-scheme-v1.drawio.svg)
 
 **Screenshot of the application once connected**
-![front-end screenshot]()
+![front-end screenshot](./kubernetes-project-front-end-screenshot.png)
 
 ### Database
 For this project, we use a mysql server wihich is running in a kubernetes pods. The pod has its own volune which allows data to be kept in between restart of the pod.
