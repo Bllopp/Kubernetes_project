@@ -75,9 +75,10 @@ kubectl apply -f mysql-secret.yaml
 ```
 ### Create the ingress service to setup the gateway
 First, you need to acitvate the ingress addons in minikube to be able to launch the ingress service.
-To do this, you'll need to type this command :
+To do this, you'll need to type these command :
 ```
 minikube addons enable ingress
+minikube addons enable ingress-dns
 ```
 Go back to the root folder of the project and create the ingress service using the ```ingress.yml``` file.
 ```
