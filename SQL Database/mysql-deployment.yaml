@@ -26,10 +26,44 @@ spec:
         - containerPort: 3306
           name: mysql
         volumeMounts:
-        - name: mysql-persistent-storage
-          mountPath: /var/lib/mysql
+          - name: mysql-initdb
+            mountPath: /docker-entrypoint-initdb.d
+          - name: mysql-persistent-storage
+            mountPath: "/var/lib/mysql"
       volumes:
       - name: mysql-persistent-storage
         persistentVolumeClaim:
           claimName: mysql-pv-claim
+      - name: mysql-initdb
+        configMap:
+          name: mysql-initdb-config
 
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-initdb-config
+data:
+  initdb.sql: |
+    -- Check if the database 'db_project' does not exist
+    CREATE DATABASE IF NOT EXISTS `db_project`;
+
+    -- Use the 'db_project' database
+    USE `db_project`;
+
+    CREATE TABLE IF NOT EXISTS `users` (`userId` int NOT NULL AUTO_INCREMENT,`username` varchar(45) DEFAULT NULL,`password` varchar(45) DEFAULT NULL,PRIMARY KEY (`userId`) ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+    INSERT INTO users
+        VALUES 
+        (1,'user1','password1'),
+        (2,'user2','password2')
+      ;
+
+    CREATE TABLE IF NOT EXISTS `tasks` (
+    `idtasks` int NOT NULL AUTO_INCREMENT,
+    `name` varchar(45) DEFAULT NULL,
+    `status` tinyint DEFAULT NULL,
+    `userId` int DEFAULT NULL,
+    PRIMARY KEY (`idtasks`),
+    KEY `userId_idx` (`userId`),
+    CONSTRAINT `userId` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`)
+        ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;

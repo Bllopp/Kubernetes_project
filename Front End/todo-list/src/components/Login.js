@@ -9,7 +9,7 @@ function Login({onLogin}) {
     const [username,setUsername] = useState('');
     const [password,setPassword] = useState('');
 
-    let connection_api_url= process.env.CONNECTION_SERVER_IP || 'https://myservice.info/users'
+    let connection_api_url= process.env.CONNECTION_SERVER_IP || 'http://myservice.info/users'
     connection_api_url += '/users/authenticate';
     const API_url = connection_api_url;
 
@@ -26,12 +26,13 @@ function Login({onLogin}) {
           // Save the token to local storage or state
           // Example: localStorage.setItem('token', token);
           localStorage.setItem('token', token)
-          localStorage.setItem('userId', response.data.idusers)
+          localStorage.setItem('userId', response.data.userId)
+          console.log(response.data.userId)
     
-          // Trigger the onLogin callback or any other action after successful login
-          onLogin(response.data.idusers);
+          // Trigger the onLogin callbkjack or any other action after successful login
+          onLogin(response.data.userId);
 
-          console.log("user connected is",response.data.idusers);
+          console.log("user connected is",response.data.userId);
 
 
         } catch (error) {
