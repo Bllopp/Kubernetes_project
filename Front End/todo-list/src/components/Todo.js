@@ -100,7 +100,7 @@ function Todo (props) {
         </div>
           <div className='tasks_container'>
             {tasks.map((element, index) => (
-              <div key={index} className={element.status ? "task" : "task-done"}> 
+              <div key={index} className={!element.status ? "task" : "task-done"}> 
              
               <span className='done_button'>
               <img value={index} className='check-icon' onClick={e => handleDone(e,index)} src={check_icon} alt=''/>
@@ -110,7 +110,7 @@ function Todo (props) {
               <p className='task_name' >{element.name}</p>
               <img src={edit_icon} className='edit_button' alt=''></img>
               </div>
-              <p className='task_status'> {element.status ? "left to do" : "Done" } </p>
+              <p className='task_status'> {!element.status ? "left to do" : "Done" } </p>
                 <div className='delete_div' >
                   <img src={src_delete}/>
                 </div>

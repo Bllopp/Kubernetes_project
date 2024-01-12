@@ -50,55 +50,24 @@ First, make sure that minikube is launched on your machine
 ```
 minikube start
  ```
-In order to create all the required pods, all the ```.yml``` file has to be executed.
-Firt, we're going to create the deployment that contains the tasks manager service.
+Then simply execute the bash script in the file `initProject.sh` to setup the deployment, configure the ingress, install dependencies and finally launching the Front-end application
+
+>To be able to execute the following command in the PowerShell, you might need to add `sh.exe` file to the `PATH` environment variable.
+>
+>The window's default path : `C:/ProgramFile/Git/bin/sh.exe`
+>
+>Otherwise just execute via Git bash terminal
+```sh
+sh ./initProject.sh
 ```
-cd '.\Task Manager\'
-kubectl apply -f task-service.yaml
-```
-Then, we're going to do the same thing for the connection service.
-```
-cd ..
-cd './Connection Service/'
-kubectl qpply -f cloud-backend.yaml
-```
-And lastly we're going to create the mysql container
-For now, we'll need to apply 5 differents ```.yml``` files
-```
-cd ..
-cd './SQL Database/'
-kubectl apply -f mysql-deployment.yaml
-kubectl apply -f mysql-serviceClusterIp.yaml
-kubectl apply -f mysql-serviceNodePort.yaml
-kubectl apply -f mysql-storage.yaml
-kubectl apply -f mysql-secret.yaml
-```
-### Create the ingress service to setup the gateway
-First, you need to acitvate the ingress addons in minikube to be able to launch the ingress service.
-To do this, you'll need to type these command :
-```
-minikube addons enable ingress
-minikube addons enable ingress-dns
-```
-Go back to the root folder of the project and create the ingress service using the ```ingress.yml``` file.
-```
-kubectl apply -f ingress.yml
-```
-### Create the tunnel using the ingress service
-To be able to access the services we just deployed, we'll create a gateway to route all the service
-```
-minikube tunnel
-```
-### Launch the react application
-Go to the react app folder and launch the application locally
-```
-cd './Front End/todo list/'
-npm start
+If there is any persmission issue, just update the file permission.
+```sh
+chmod +x initProject.sh
 ```
 ## Debugging or troubleshooting
 If the service are not accessible from the react applicationm, it might comes from a connection issue with the database.
 In this case, you'll need to restart the service pods.
-#### First get the pods name
+#### First get the deployment name
 ```
 kubectl get deployment
 ```
